@@ -20,7 +20,7 @@ export default function CardBook({ book }: Prop) {
     <TouchableOpacity
       style={styles.contentImage}
       activeOpacity={0.8}
-      onPress={() => navigation.navigate("DetailsScreen")}
+      onPress={() => navigation.navigate("DetailsScreen", book)}
     >
       <Image source={{ uri: book.cover }} style={styles.image} />
       <TouchableOpacity

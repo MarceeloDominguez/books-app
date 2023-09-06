@@ -3,10 +3,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../screens/HomeScreen";
 import DetailsScreen from "../screens/DetailsScreen";
 import SearchScreen from "../screens/SearchScreen";
+import { Book } from "../interfaces/book";
 
 export type RootStackParamsList = {
   HomeScreen: undefined;
-  DetailsScreen: undefined;
+  DetailsScreen: Book;
   SearchScreen: undefined;
 };
 
@@ -20,11 +21,7 @@ export default function Navigation() {
         component={HomeScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="DetailsScreen"
-        component={DetailsScreen}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
     </Stack.Navigator>
   );
