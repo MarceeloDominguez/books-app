@@ -5,12 +5,15 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
+  StatusBar,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import BOOKS from "../data/books.json";
 import HeaderHome from "../components/HeaderHome";
 import CardBook from "../components/CardBook";
 import Slider from "@react-native-community/slider";
+import { COLOR } from "../constants/theme";
+import { GLOBAL_STYLE } from "../styles/globalStyle";
 
 export default function HomeScreen() {
   const { top } = useSafeAreaInsets();
@@ -32,22 +35,26 @@ export default function HomeScreen() {
     (book) => book.book.pages >= pageCountFilter
   );
 
-  const porcentaje = (pageCountFilter / 700) * 100;
+  const percentage = (pageCountFilter / 700) * 100;
 
   return (
     <ScrollView
       style={[styles.container, { marginTop: top }]}
       showsVerticalScrollIndicator={false}
     >
+      <StatusBar
+        backgroundColor={COLOR.backgroundColorPrimary}
+        barStyle="dark-content"
+      />
       <HeaderHome />
-      <Text>
-        Libros con mas de{" "}
+      <Text style={styles.titleSlider}>
+        Libros con más de{" "}
         {Number(pageCountFilter.toFixed(0)) === 0
           ? 43
           : pageCountFilter.toFixed(0)}{" "}
         páginas
       </Text>
-      <View>
+      <View style={styles.contentSlider}>
         <Slider
           minimumValue={0}
           maximumValue={700}
@@ -57,18 +64,15 @@ export default function HomeScreen() {
           step={50}
           value={pageCountFilter}
           onValueChange={(value) => setPageCountFilter(value)}
-          style={{ zIndex: 1, width: "100%" }}
+          style={styles.slider}
         />
         <View
-          style={{
-            backgroundColor: "red",
-            height: 20,
-            position: "absolute",
-            zIndex: 0,
-            width: porcentaje === 0 ? 20 : `${porcentaje}%`,
-            borderRadius: 5,
-          }}
+          style={[
+            styles.barSliderFilter,
+            { width: percentage === 0 ? 20 : `${percentage}%` },
+          ]}
         />
+        <View style={styles.barSlider} />
       </View>
       <View style={styles.wrapListCategory}>
         {listGenre.map((item) => (
@@ -76,7 +80,12 @@ export default function HomeScreen() {
             key={item}
             style={[
               styles.buttonCategory,
-              { backgroundColor: genre === item ? "#A8DF8E" : "#FFF4F4" },
+              {
+                backgroundColor:
+                  genre === item
+                    ? COLOR.backgroundColorSecondary
+                    : COLOR.backgroundColorPrimary,
+              },
             ]}
             activeOpacity={0.8}
             onPress={() => setGenre(item)}
@@ -84,7 +93,7 @@ export default function HomeScreen() {
             <Text
               style={[
                 styles.genre,
-                { color: genre === item ? "#191919" : "#747171" },
+                { color: genre === item ? COLOR.textPrimary : "#747171" },
               ]}
             >
               {item}
@@ -92,7 +101,7 @@ export default function HomeScreen() {
           </TouchableOpacity>
         ))}
       </View>
-      <View style={styles.wrapItems}>
+      <View style={GLOBAL_STYLE.wrapItems}>
         {filteredBooks.map((item) => (
           <CardBook key={item.book.ISBN} book={item.book} />
         ))}
@@ -105,13 +114,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    backgroundColor: "#FFF4F4",
-  },
-  wrapItems: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    paddingVertical: 20,
+    backgroundColor: COLOR.backgroundColorPrimary,
   },
   wrapListCategory: {
     flexDirection: "row",
@@ -130,5 +133,36 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
     fontSize: 14,
     textTransform: "capitalize",
+  },
+  //slider
+  titleSlider: {
+    fontSize: 13,
+    fontWeight: "700",
+    letterSpacing: 0.3,
+    marginTop: 10,
+    color: COLOR.textPrimary,
+  },
+  contentSlider: {
+    marginVertical: 10,
+  },
+  slider: {
+    zIndex: 2,
+    width: "100%",
+    height: 12,
+  },
+  barSlider: {
+    backgroundColor: "#dfd6d6",
+    height: 12,
+    position: "absolute",
+    zIndex: 0,
+    width: "100%",
+    borderRadius: 5,
+  },
+  barSliderFilter: {
+    backgroundColor: COLOR.backgroundColorSecondary,
+    height: 12,
+    position: "absolute",
+    zIndex: 1,
+    borderRadius: 5,
   },
 });
