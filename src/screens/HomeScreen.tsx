@@ -74,6 +74,7 @@ export default function HomeScreen() {
         />
         <View style={styles.barSlider} />
       </View>
+      <Text style={styles.titleListGenre}>Filtrar por Género</Text>
       <View style={styles.wrapListCategory}>
         {listGenre.map((item) => (
           <TouchableOpacity
@@ -134,6 +135,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textTransform: "capitalize",
   },
+  titleListGenre: {
+    fontSize: 18,
+    marginVertical: 10,
+    letterSpacing: 0.3,
+    fontWeight: "bold",
+    color: COLOR.textPrimary,
+  },
   //slider
   titleSlider: {
     fontSize: 13,
@@ -141,6 +149,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
     marginTop: 10,
     color: COLOR.textPrimary,
+    opacity: 0.9,
   },
   contentSlider: {
     marginVertical: 10,

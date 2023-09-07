@@ -1,11 +1,20 @@
 import React, { useEffect } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { View, StyleSheet, Image, Dimensions, ScrollView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import { RootStackParamsList } from "../navigation/Navigation";
 import { COLOR } from "../constants/theme";
 import Tag from "../components/Tag";
 import Description from "../components/Description";
 import Author from "../components/Author";
+import { Ionicons } from "@expo/vector-icons";
+import useToggleFavorite from "../hooks/useToggleFavorite";
 
 interface Prop
   extends NativeStackScreenProps<RootStackParamsList, "DetailsScreen"> {}
@@ -16,6 +25,9 @@ const WIDTH_IMAGE = width * 0.65;
 
 export default function DetailsScreen({ route, navigation }: Prop) {
   const { title, cover, genre, pages, year, synopsis, author } = route.params;
+  const book = route.params;
+
+  const { isFavorite, toggleFavorite } = useToggleFavorite(book);
 
   useEffect(() => {
     navigation.setOptions({
@@ -30,7 +42,20 @@ export default function DetailsScreen({ route, navigation }: Prop) {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.contentImage}>
-        <Image source={{ uri: cover }} style={styles.image} />
+        <View>
+          <Image source={{ uri: cover }} style={styles.image} />
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={styles.contentIconCard}
+            onPress={toggleFavorite}
+          >
+            <Ionicons
+              name={isFavorite ? "checkmark" : "add-outline"}
+              size={24}
+              color="#000000"
+            />
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.wrapTags}>
         <Tag type="Género:" data={genre} />
@@ -71,5 +96,16 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingVertical: 10,
     flexWrap: "wrap",
+  },
+  contentIconCard: {
+    position: "absolute",
+    bottom: 10,
+    right: 10,
+    backgroundColor: COLOR.backgroundColorSecondary,
+    width: 40,
+    height: 40,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

@@ -25,7 +25,11 @@ export default function SearchScreen({ navigation }: Prop) {
   }, []);
 
   return (
-    <ScrollView style={[styles.container]} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      style={[styles.container]}
+      showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="handled"
+    >
       <View style={styles.wrapInput}>
         <TextInput
           placeholder="Buscar un libro..."

@@ -5,6 +5,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamsList } from "../navigation/Navigation";
+import { COLOR } from "../constants/theme";
+import useToggleFavorite from "../hooks/useToggleFavorite";
 
 const { width } = Dimensions.get("window");
 
@@ -16,6 +18,8 @@ export default function CardBook({ book }: Prop) {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
 
+  const { isFavorite, toggleFavorite } = useToggleFavorite(book);
+
   return (
     <TouchableOpacity
       style={styles.contentImage}
@@ -26,9 +30,13 @@ export default function CardBook({ book }: Prop) {
       <TouchableOpacity
         activeOpacity={0.8}
         style={styles.contentIconCard}
-        onPress={() => console.log("click corazon...")}
+        onPress={toggleFavorite}
       >
-        <Ionicons name="heart-outline" size={24} color="#B70404" />
+        <Ionicons
+          name={isFavorite ? "checkmark" : "add-outline"}
+          size={24}
+          color="#000000"
+        />
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -50,7 +58,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 10,
     right: 10,
-    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    backgroundColor: COLOR.backgroundColorSecondary,
     width: 40,
     height: 40,
     borderRadius: 8,
