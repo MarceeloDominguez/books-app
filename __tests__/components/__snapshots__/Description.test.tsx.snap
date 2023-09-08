@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component <Desciption /> verify that the component has rendered correctly 1`] = `
+<View
+  style={
+    {
+      "paddingVertical": 20,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#191919",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "letterSpacing": 0.3,
+        "marginBottom": 10,
+      }
+    }
+  >
+    Descripción
+  </Text>
+  <Text
+    style={
+      {
+        "color": "#191919",
+        "fontSize": 15,
+        "fontWeight": "600",
+        "letterSpacing": 0.3,
+        "lineHeight": 22,
+      }
+    }
+  >
+    Esta es una sinopsis de prueba.
+  </Text>
+</View>
+`;
+
+exports[`Component Desciption verify that the component has rendered correctly 1`] = `
+<View
+  style={
+    {
+      "paddingVertical": 20,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#191919",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "letterSpacing": 0.3,
+        "marginBottom": 10,
+      }
+    }
+  >
+    Descripción
+  </Text>
+  <Text
+    style={
+      {
+        "color": "#191919",
+        "fontSize": 15,
+        "fontWeight": "600",
+        "letterSpacing": 0.3,
+        "lineHeight": 22,
+      }
+    }
+  >
+    Esta es una sinopsis de prueba.
+  </Text>
+</View>
+`;
+
+exports[`Desciption  1`] = `
+<View
+  style={
+    {
+      "paddingVertical": 20,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#191919",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "letterSpacing": 0.3,
+        "marginBottom": 10,
+      }
+    }
+  >
+    Descripción
+  </Text>
+  <Text
+    style={
+      {
+        "color": "#191919",
+        "fontSize": 15,
+        "fontWeight": "600",
+        "letterSpacing": 0.3,
+        "lineHeight": 22,
+      }
+    }
+  >
+    Esta es una sinopsis de prueba.
+  </Text>
+</View>
+`;
+
+exports[`Desciption verify that the component has rendered correctly 1`] = `
+<View
+  style={
+    {
+      "paddingVertical": 20,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#191919",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "letterSpacing": 0.3,
+        "marginBottom": 10,
+      }
+    }
+  >
+    Descripción
+  </Text>
+  <Text
+    style={
+      {
+        "color": "#191919",
+        "fontSize": 15,
+        "fontWeight": "600",
+        "letterSpacing": 0.3,
+        "lineHeight": 22,
+      }
+    }
+  >
+    Esta es una sinopsis de prueba.
+  </Text>
+</View>
+`;
